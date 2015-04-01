@@ -7,7 +7,7 @@ class Host
   end
 
   def add_offer(offer)
-    Stores.offers_store.add_offer(self, offer)
+    Stores.offers_store.add(self, offer)
   end
 
   def total_payout  # FIXME : SRP (move to Accountant or ..), computations rules, ..
@@ -31,7 +31,8 @@ class Host
   end
 
 private
+
   def offers
-    Stores.offers_store.offers(self)
+    Stores.offers_store.get(self)
   end
 end

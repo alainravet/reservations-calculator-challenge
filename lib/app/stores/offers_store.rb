@@ -5,13 +5,13 @@ module Store
       @offers = {}
     end
 
-    def add_offer(host, offer)
+    def add(host, offer)
       @offers[host] ||= []
       @offers[host] << offer
     end
 
-    def offers(host)
-      @offers[host]
+    def get(host)
+      @offers[host] || []
     end
   end
 end
