@@ -1,4 +1,5 @@
 require_relative 'storeable'
+require_relative 'checkout_processor'
 
 # Represents hosts
 class Host
@@ -9,23 +10,7 @@ class Host
   include Storeable
   has_many :offers
 
-  def total_payout  # FIXME : SRP (move to Accountant or ..), computations rules, ..
-    outcome = 0
-    offers.each do |offer|
-      tmp_payout = 0
-      offer.reservations.each do |reservation|
-        case offer.type
-        when :room
-          tmp_payout += offer.nightly_rate * reservation.nights
-        when :apartment
-          tmp_payout += offer.nightly_rate * reservation.nights * 0.9
-        when :entire_house
-          tmp_payout += offer.nightly_rate * reservation.nights * 0.8
-        end
-      end
-
-      outcome += tmp_payout
-    end
-    outcome
+  def total_payout
+    CheckoutProcessor.new(self).payout_for_all_offers
   end
 end
