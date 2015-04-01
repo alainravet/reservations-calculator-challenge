@@ -1,4 +1,4 @@
-require_relative 'storeable'
+require 'persistence/storeable'
 require_relative 'checkout_processor'
 
 # Represents hosts
@@ -7,7 +7,7 @@ class Host
     @name = name
   end
 
-  include Storeable
+  include Persistence::Storeable
   has_many :offers
 
   def total_payout

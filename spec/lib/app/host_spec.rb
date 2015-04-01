@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe Host do
   before do
-    Stores.reset_stores
+    Persistence::Stores.reset_stores
   end
 
   let(:host) { described_class.new("John Doe") }

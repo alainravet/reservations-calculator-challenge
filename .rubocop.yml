@@ -7,6 +7,9 @@ Style/AccessModifierIndentation:
 Style/Blocks:
   Enabled: false
 
+Style/Documentation:
+  Enabled: false
+
 Style/IndentHash:
   Enabled: false
 
