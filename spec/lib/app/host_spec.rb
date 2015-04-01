@@ -1,14 +1,18 @@
 require "spec_helper"
 
 describe Host do
+  before do
+    Persistence::Stores.reset_stores
+  end
+
   let(:host) { described_class.new("John Doe") }
 
   describe "#total_payout" do
     it "works correctly" do
       # Create few offers
-      cheerful_room = Offer.new(:room, "Cheerful Room in Berlin", 100)
-      sunny_apartment = Offer.new(:apartment, "Sunny Apartment", 200)
-      small_room = Offer.new(:room, "My small Room", 50)
+      cheerful_room   = AccommodationOffer.new(:room,      "Cheerful Room in Berlin", 100)
+      sunny_apartment = AccommodationOffer.new(:apartment, "Sunny Apartment", 200)
+      small_room      = AccommodationOffer.new(:room,      "My small Room", 50)
 
       # Assign offers to the host
       host.add_offer(cheerful_room)
