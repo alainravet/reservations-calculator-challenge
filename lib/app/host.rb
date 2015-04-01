@@ -1,4 +1,4 @@
-require_relative 'stores'
+require_relative 'storeable'
 
 # Represents hosts
 class Host
@@ -6,9 +6,8 @@ class Host
     @name = name
   end
 
-  def add_offer(offer)
-    Stores.offers_store.add(self, offer)
-  end
+  include Storeable
+  has_many :offers
 
   def total_payout  # FIXME : SRP (move to Accountant or ..), computations rules, ..
     outcome = 0
@@ -28,11 +27,5 @@ class Host
       outcome += tmp_payout
     end
     outcome
-  end
-
-private
-
-  def offers
-    Stores.offers_store.get(self)
   end
 end
