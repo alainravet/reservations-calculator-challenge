@@ -7,6 +7,7 @@ class Offer
     @reservations = []
   end
 
+  # FIXME : enforce SRP (move to a ReservationStore)
   def add_reservation(reservation)
     @reservations << reservation
   end

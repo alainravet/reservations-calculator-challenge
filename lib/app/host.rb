@@ -2,14 +2,14 @@
 class Host
   def initialize(name)
     @name = name
-    @offers = []
+    @offers = []  # FIXME : SRP (move to an OffersStore)
   end
 
   def add_offer(offer)
     @offers << offer
   end
 
-  def total_payout
+  def total_payout  # FIXME : SRP (move to Accountant or ..), computations rules, ..
     outcome = 0
     @offers.each do |offer|
       tmp_payout = 0
