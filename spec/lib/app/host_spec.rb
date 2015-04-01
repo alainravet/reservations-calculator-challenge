@@ -1,6 +1,10 @@
 require "spec_helper"
 
 describe Host do
+  before do
+    Stores.reset_stores
+  end
+
   let(:host) { described_class.new("John Doe") }
 
   describe "#total_payout" do

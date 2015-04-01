@@ -1,17 +1,18 @@
+require_relative 'stores'
+
 # Represents hosts
 class Host
   def initialize(name)
     @name = name
-    @offers = []  # FIXME : SRP (move to an OffersStore)
   end
 
   def add_offer(offer)
-    @offers << offer
+    Stores.offers_store.add_offer(self, offer)
   end
 
   def total_payout  # FIXME : SRP (move to Accountant or ..), computations rules, ..
     outcome = 0
-    @offers.each do |offer|
+    offers.each do |offer|
       tmp_payout = 0
       offer.reservations.each do |reservation|
         case offer.type
@@ -27,5 +28,10 @@ class Host
       outcome += tmp_payout
     end
     outcome
+  end
+
+private
+  def offers
+    Stores.offers_store.offers(self)
   end
 end
