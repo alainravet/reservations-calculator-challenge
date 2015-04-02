@@ -1,6 +1,6 @@
 module Persistence
   class HashStore
-    def initialize
+    def initialize()
       @data = {}
     end
 
